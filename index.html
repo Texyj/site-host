@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aether Host | Hospedagem de Minecraft com Alta Performance ⚡</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Inter, sans-serif; }
+        body { background-color: #0d0f12; color: #f1f5f9; text-align: center; }
+
+        /* Header / Navbar */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: #13171f; border-bottom: 1px solid #1f2937; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: #10b981; text-transform: uppercase; letter-spacing: 1px; }
+        .logo span { color: #fff; }
+        .nav-links a { color: #94a3b8; text-decoration: none; margin-left: 20px; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: #10b981; }
+
+        /* Hero Section */
+        .hero { padding: 80px 20px; background: radial-gradient(circle at top, #132720 0%, #0d0f12 70%); }
+        h1 { font-size: 3rem; font-weight: 800; margin-bottom: 15px; }
+        h1 span { color: #10b981; }
+        p.subtitle { color: #94a3b8; font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px auto; }
+
+        /* Grid de Planos */
+        .plans-container { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; padding: 20px 8% 80px 8%; }
+        
+        .plan-card {
+            background: #13171f;
+            border: 1px solid #1f2937;
+            border-radius: 12px;
+            padding: 35px 25px;
+            width: 300px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .plan-card:hover { transform: translateY(-8px); border-color: #10b981; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15); }
+        .plan-card.popular { border: 2px solid #10b981; background: #17202a; }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #10b981;
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .plan-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; }
+        .plan-price { font-size: 2.2rem; font-weight: 800; color: #10b981; margin-bottom: 20px; }
+        .plan-price span { font-size: 1rem; color: #94a3b8; }
+
+        .plan-specs { list-style: none; margin-bottom: 30px; text-align: left; }
+        .plan-specs li { padding: 10px 0; border-bottom: 1px solid #1f2937; color: #cbd5e1; font-size: 0.95rem; }
+        .plan-specs li span { color: #10b981; font-weight: 700; margin-right: 8px; }
+
+        .btn-buy {
+            display: block;
+            background: #10b981;
+            color: #000;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .btn-buy:hover { background: #059669; color: #fff; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">AETHER<span>HOST</span> ⚡</div>
+        <div class="nav-links">
+            <a href="#">Planos</a>
+            <a href="#">Painel</a>
+            <a href="#">Discord</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Hospedagem de Minecraft <span>Zero Lag</span> 🚀</h1>
+        <p class="subtitle">Servidores de alta performance com proteção DDoS, processadores rápidos e ativação via PIX na hora! 🇧🇷💚</p>
+    </section>
+
+    <section class="plans-container">
+        
+        <!-- Plano 1 -->
+        <div class="plan-card">
+            <div class="plan-title">Plano Start</div>
+            <div class="plan-price">R$ 15<span>/mês</span></div>
+            <ul class="plan-specs">
+                <li><span>✓</span> 2 GB Memória RAM</li>
+                <li><span>✓</span> Processador Ryzen 9</li>
+                <li><span>✓</span> 20 GB SSD NVMe</li>
+                <li><span>✓</span> Proteção DDoS Gamer</li>
+                <li><span>✓</span> Painel Pterodactyl</li>
+            </ul>
+            <a href="#" class="btn-buy">Contratar Agora ⚡</a>
+        </div>
+
+        <!-- Plano 2 (Popular) -->
+        <div class="plan-card popular">
+            <div class="badge">Mais Vendido 🔥</div>
+            <div class="plan-title">Plano Pro</div>
+            <div class="plan-price">R$ 30<span>/mês</span></div>
+            <ul class="plan-specs">
+                <li><span>✓</span> 4 GB Memória RAM</li>
+                <li><span>✓</span> Processador Ryzen 9</li>
+                <li><span>✓</span> 40 GB SSD NVMe</li>
+                <li><span>✓</span> Proteção DDoS Gamer</li>
+                <li><span>✓</span> Suporte Prioritário 💬</li>
+            </ul>
+            <a href="#" class="btn-buy">Contratar Agora ⚡</a>
+        </div>
+
+        <!-- Plano 3 -->
+        <div class="plan-card">
+            <div class="plan-title">Plano Ultra</div>
+            <div class="plan-price">R$ 60<span>/mês</span></div>
+            <ul class="plan-specs">
+                <li><span>✓</span> 8 GB Memória RAM</li>
+                <li><span>✓</span> Processador Ryzen 9</li>
+                <li><span>✓</span> 80 GB SSD NVMe</li>
+                <li><span>✓</span> Proteção DDoS Gamer</li>
+                <li><span>✓</span> Slots Ilimitados 🎮</li>
+            </ul>
+            <a href="#" class="btn-buy">Contratar Agora ⚡</a>
+        </div>
+
+    </section>
+
+</body>
+</html>
