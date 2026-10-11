@@ -14,89 +14,38 @@
         .logo span { color: #f59e0b; }
         .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-links a { color: #475569; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
-        .btn-client { background: #eef2ff; color: #4338ca; padding: 8px 16px; border-radius: 8px; font-weight: 700; text-decoration: none; }
-        .btn-create-nav { background: linear-gradient(90deg, #f59e0b, #d97706); color: #fff; padding: 8px 18px; border-radius: 8px; font-weight: 700; text-decoration: none; }
+        .btn-create-nav { background: linear-gradient(90deg, #f59e0b, #d97706); color: #fff; padding: 8px 18px; border-radius: 8px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; }
 
         /* Hero */
         .hero { padding: 60px 20px 20px; }
         h1 { font-size: 2.8rem; font-weight: 900; color: #2e1065; margin-bottom: 10px; }
         p.subtitle { color: #64748b; font-size: 1.1rem; margin-bottom: 40px; }
 
-        h2.section-title { font-size: 2rem; font-weight: 800; color: #2e1065; margin-bottom: 25px; }
-
-        /* Localização Badge */
         .location-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #ede9fe;
-            color: #5b21b6;
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 40px;
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #ede9fe; color: #5b21b6; padding: 10px 20px;
+            border-radius: 12px; font-weight: 700; font-size: 0.95rem; margin-bottom: 40px;
         }
 
-        /* Grid de Planos estilo EnxadaHost */
+        /* Grid de Planos */
         .plans-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 5% 80px; }
         
         .plan-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            width: 260px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            transition: 0.3s;
-            position: relative;
-            text-align: left;
+            background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px;
+            width: 260px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: 0.3s; position: relative; text-align: left;
         }
-
         .plan-card:hover { transform: translateY(-6px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); }
         .plan-card.popular { border: 2px solid #6d28d9; background: #faf5ff; }
 
-        /* Pixel Art Header */
         .card-header-img {
-            height: 110px;
+            height: 100px;
             background: linear-gradient(180deg, #38bdf8 0%, #3b82f6 60%, #16a34a 60%, #15803d 100%);
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-        }
-
-        .minecraft-house {
-            width: 60px;
-            height: 50px;
-            background: #854d0e;
-            border: 3px solid #451a03;
-            margin-bottom: 5px;
-            position: relative;
-        }
-        .minecraft-house::after {
-            content: ''; position: absolute; top: -20px; left: -10px;
-            width: 0; height: 0;
-            border-left: 40px solid transparent;
-            border-right: 40px solid transparent;
-            border-bottom: 20px solid #7c2d12;
         }
 
         .card-body { padding: 20px; }
-
         .plan-name { font-size: 1.1rem; font-weight: 800; color: #475569; text-transform: uppercase; }
-        
-        .discount-badge {
-            display: inline-block;
-            background: #7c3aed;
-            color: #fff;
-            font-size: 0.75rem;
-            font-weight: 800;
-            padding: 3px 8px;
-            border-radius: 6px;
-            float: right;
-        }
-
+        .discount-badge { display: inline-block; background: #7c3aed; color: #fff; font-size: 0.75rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; float: right; }
         .old-price { text-decoration: line-through; color: #94a3b8; font-size: 0.85rem; margin-top: 10px; }
         .plan-price { font-size: 1.8rem; font-weight: 900; color: #1e1b4b; }
         .plan-price span { font-size: 0.85rem; color: #64748b; font-weight: 600; }
@@ -106,38 +55,38 @@
         .specs-list li::before { content: "✓"; color: #7c3aed; font-weight: 900; }
 
         .btn-buy-plan {
-            display: block;
-            width: 100%;
-            background: #f3e8ff;
-            color: #6d28d9;
-            text-align: center;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 800;
-            text-decoration: none;
-            transition: 0.3s;
+            display: block; width: 100%; background: #f3e8ff; color: #6d28d9;
+            text-align: center; padding: 12px; border-radius: 10px; font-weight: 800;
+            text-decoration: none; border: none; cursor: pointer; transition: 0.3s;
         }
-
         .btn-buy-plan:hover { background: #6d28d9; color: #fff; }
-        
-        .plan-card.popular .btn-buy-plan {
-            background: linear-gradient(90deg, #f59e0b, #d97706);
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        .plan-card.popular .btn-buy-plan { background: linear-gradient(90deg, #f59e0b, #d97706); color: #fff; }
+
+        /* Modal Checkout PIX */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(5px);
+            justify-content: center; align-items: center; z-index: 1000;
         }
 
-        .top-tag {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #f59e0b;
-            color: #fff;
-            font-size: 0.7rem;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 6px;
-            z-index: 2;
+        .modal-content {
+            background: #fff; padding: 30px; border-radius: 20px; width: 90%; max-width: 420px;
+            text-align: left; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative;
         }
+
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #64748b; }
+        .modal-title { font-size: 1.4rem; font-weight: 800; color: #2e1065; margin-bottom: 10px; }
+        
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; font-size: 0.85rem; font-weight: 700; color: #475569; margin-bottom: 5px; }
+        .input-group input { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem; }
+
+        .btn-pix {
+            width: 100%; background: #10b981; color: #fff; border: none; padding: 14px;
+            border-radius: 10px; font-weight: 800; font-size: 1rem; cursor: pointer;
+            margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 8px;
+        }
+        .btn-pix:hover { background: #059669; }
     </style>
 </head>
 <body>
@@ -146,16 +95,13 @@
         <div class="logo">AETHER<span>HOST</span> ⛏️</div>
         <div class="nav-links">
             <a href="#">Hospedagem Minecraft</a>
-            <a href="#">Área do Cliente</a>
-            <a href="#" class="btn-create-nav">Criar Servidor ⚡</a>
+            <button class="btn-create-nav" onclick="abrirModal('Plano Start', '26,24')">Criar Servidor ⚡</button>
         </div>
     </nav>
 
     <section class="hero">
         <h1>A forma mais fácil de criar o seu<br>servidor de Minecraft 🎮</h1>
         <p class="subtitle">Sem complicações, escolha o plano perfeito para você e seus amigos.</p>
-
-        <h2 class="section-title">Escolha seu servidor</h2>
 
         <div class="location-badge">
             🇧🇷 Todos os nossos servidores estão localizados em São Paulo (Brasil)
@@ -164,11 +110,9 @@
 
     <section class="plans-container">
         
-        <!-- Plano 1 -->
+        <!-- Plano Start -->
         <div class="plan-card">
-            <div class="card-header-img">
-                <div class="minecraft-house"></div>
-            </div>
+            <div class="card-header-img"></div>
             <div class="card-body">
                 <span class="discount-badge">25% OFF</span>
                 <div class="plan-name">Plano Start</div>
@@ -176,21 +120,18 @@
                 <div class="plan-price">R$ 26,24 <span>/mês</span></div>
                 
                 <ul class="specs-list">
-                    <li>Recomendado para até 8 jogadores</li>
+                    <li>Até 8 jogadores</li>
                     <li>Processamento padrão</li>
-                    <li>Até 3GB RAM</li>
-                    <li>Proteção DDoS Gamer</li>
+                    <li>3GB RAM</li>
                 </ul>
 
-                <a href="#" class="btn-buy-plan">Criar servidor</a>
+                <button class="btn-buy-plan" onclick="abrirModal('Plano Start', '26,24')">Criar servidor</button>
             </div>
         </div>
 
-        <!-- Plano 2 -->
-        <div class="plan-card">
-            <div class="card-header-img">
-                <div class="minecraft-house"></div>
-            </div>
+        <!-- Plano Pro -->
+        <div class="plan-card popular">
+            <div class="card-header-img"></div>
             <div class="card-body">
                 <span class="discount-badge">25% OFF</span>
                 <div class="plan-name">Plano Pro</div>
@@ -198,45 +139,18 @@
                 <div class="plan-price">R$ 40,44 <span>/mês</span></div>
                 
                 <ul class="specs-list">
-                    <li>Recomendado para até 16 jogadores</li>
-                    <li>Processamento padrão</li>
+                    <li>Até 16 jogadores</li>
                     <li>RAM Ilimitada ⚡</li>
                     <li>Proteção DDoS Gamer</li>
                 </ul>
 
-                <a href="#" class="btn-buy-plan">Criar servidor</a>
+                <button class="btn-buy-plan" onclick="abrirModal('Plano Pro', '40,44')">Criar servidor</button>
             </div>
         </div>
 
-        <!-- Plano 3 (Mais Vendido) -->
-        <div class="plan-card popular">
-            <span class="top-tag">Mais vendido 🔥</span>
-            <div class="card-header-img">
-                <div class="minecraft-house"></div>
-            </div>
-            <div class="card-body">
-                <span class="discount-badge">25% OFF</span>
-                <div class="plan-name">Plano VIP</div>
-                <div class="old-price">R$ 76,19</div>
-                <div class="plan-price">R$ 57,14 <span>/mês</span></div>
-                
-                <ul class="specs-list">
-                    <li>Recomendado para 32 jogadores</li>
-                    <li>Processamento avançado</li>
-                    <li>RAM Ilimitada ⚡</li>
-                    <li>Painel Pterodactyl Completo</li>
-                </ul>
-
-                <a href="#" class="btn-buy-plan">Criar servidor</a>
-            </div>
-        </div>
-
-        <!-- Plano 4 -->
+        <!-- Plano Ultra -->
         <div class="plan-card">
-            <span class="top-tag" style="background: #7c3aed;">Ryzen 9 7900X 🚀</span>
-            <div class="card-header-img">
-                <div class="minecraft-house"></div>
-            </div>
+            <div class="card-header-img"></div>
             <div class="card-body">
                 <span class="discount-badge">25% OFF</span>
                 <div class="plan-name">Plano Ultra</div>
@@ -244,17 +158,55 @@
                 <div class="plan-price">R$ 89,91 <span>/mês</span></div>
                 
                 <ul class="specs-list">
-                    <li>Recomendado para +100 jogadores</li>
+                    <li>+100 jogadores</li>
                     <li>Processamento ultra rápido</li>
-                    <li>RAM Ilimitada ⚡</li>
                     <li>Suporte Prioritário 24/7</li>
                 </ul>
 
-                <a href="#" class="btn-buy-plan">Criar servidor</a>
+                <button class="btn-buy-plan" onclick="abrirModal('Plano Ultra', '89,91')">Criar servidor</button>
             </div>
         </div>
 
     </section>
+
+    <!-- Modal Checkout PIX -->
+    <div class="modal" id="modalCheckout">
+        <div class="modal-content">
+            <span class="close-modal" onclick="fecharModal()">&times;</span>
+            <div class="modal-title" id="modalPlanoNome">Finalizar Pedido</div>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Preencha para receber o acesso ao servidor via PIX ⚡</p>
+
+            <div class="input-group">
+                <label>Seu Nome / Discord</label>
+                <input type="text" placeholder="Ex: Player123#0000">
+            </div>
+
+            <div class="input-group">
+                <label>Seu E-mail</label>
+                <input type="email" placeholder="seuemail@gmail.com">
+            </div>
+
+            <button class="btn-pix" onclick="pagarPix()">
+                <span>Pagar com PIX</span> 💸
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function abrirModal(plano, preco) {
+            document.getElementById('modalPlanoNome').innerText = plano + " - R$ " + preco;
+            document.getElementById('modalCheckout').style.display = 'flex';
+        }
+
+        function fecharModal() {
+            document.getElementById('modalCheckout').style.display = 'none';
+        }
+
+        function pagarPix() {
+            alert("🚀 Pedido gerado! Redirecionando para a área de pagamento...");
+            // Aqui podes colocar o teu link do Mercado Pago ou do Discord!
+        }
+    </script>
 
 </body>
 </html>
