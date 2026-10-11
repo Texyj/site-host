@@ -3,152 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aether Host | Hospedagem Minecraft Zero Lag ⚡</title>
+    <title>Aether Host | A forma mais fácil de criar o seu servidor de Minecraft ⛏️</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Inter, sans-serif; }
-        body { background-color: #0b0d12; color: #f1f5f9; text-align: center; overflow-x: hidden; }
+        body { background-color: #f8fafc; color: #1e1b4b; text-align: center; }
 
-        /* Header / Navbar */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(19, 23, 31, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(16, 185, 129, 0.2); position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 1.6rem; font-weight: 800; color: #00ffa3; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 0 10px rgba(0, 255, 163, 0.5); }
-        .logo span { color: #fff; }
-        .nav-links a { color: #94a3b8; text-decoration: none; margin-left: 20px; font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover { color: #00ffa3; text-shadow: 0 0 8px rgba(0, 255, 163, 0.8); }
+        /* Navbar */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: #ffffff; border-bottom: 1px solid #e2e8f0; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: #4c1d95; text-transform: uppercase; }
+        .logo span { color: #f59e0b; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { color: #475569; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+        .btn-client { background: #eef2ff; color: #4338ca; padding: 8px 16px; border-radius: 8px; font-weight: 700; text-decoration: none; }
+        .btn-create-nav { background: linear-gradient(90deg, #f59e0b, #d97706); color: #fff; padding: 8px 18px; border-radius: 8px; font-weight: 700; text-decoration: none; }
 
-        /* Hero Section Vivo */
-        .hero { padding: 100px 20px 60px; background: radial-gradient(circle at top, rgba(0, 255, 163, 0.15) 0%, #0b0d12 70%); }
-        h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 15px; }
-        h1 span { background: linear-gradient(90deg, #00ffa3, #00d2ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(0, 255, 163, 0.3); }
-        p.subtitle { color: #cbd5e1; font-size: 1.2rem; max-width: 650px; margin: 0 auto 40px auto; line-height: 1.6; }
+        /* Hero */
+        .hero { padding: 60px 20px 20px; }
+        h1 { font-size: 2.8rem; font-weight: 900; color: #2e1065; margin-bottom: 10px; }
+        p.subtitle { color: #64748b; font-size: 1.1rem; margin-bottom: 40px; }
 
-        /* Cards de Planos Turbinados */
-        .plans-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; padding: 20px 8% 80px 8%; }
+        h2.section-title { font-size: 2rem; font-weight: 800; color: #2e1065; margin-bottom: 25px; }
+
+        /* Localização Badge */
+        .location-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ede9fe;
+            color: #5b21b6;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+        }
+
+        /* Grid de Planos estilo EnxadaHost */
+        .plans-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 5% 80px; }
         
         .plan-card {
-            background: rgba(19, 23, 31, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 16px;
-            padding: 35px 25px;
-            width: 310px;
+            width: 260px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
             position: relative;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            text-align: left;
         }
 
-        .plan-card:hover { 
-            transform: translateY(-10px) scale(1.02); 
-            border-color: #00ffa3; 
-            box-shadow: 0 15px 35px rgba(0, 255, 163, 0.25); 
+        .plan-card:hover { transform: translateY(-6px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); }
+        .plan-card.popular { border: 2px solid #6d28d9; background: #faf5ff; }
+
+        /* Pixel Art Header */
+        .card-header-img {
+            height: 110px;
+            background: linear-gradient(180deg, #38bdf8 0%, #3b82f6 60%, #16a34a 60%, #15803d 100%);
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
         }
 
-        .plan-card.popular { 
-            border: 2px solid #00ffa3; 
-            background: linear-gradient(180deg, rgba(0, 255, 163, 0.08) 0%, rgba(19, 23, 31, 0.95) 100%);
-            box-shadow: 0 0 20px rgba(0, 255, 163, 0.15);
+        .minecraft-house {
+            width: 60px;
+            height: 50px;
+            background: #854d0e;
+            border: 3px solid #451a03;
+            margin-bottom: 5px;
+            position: relative;
+        }
+        .minecraft-house::after {
+            content: ''; position: absolute; top: -20px; left: -10px;
+            width: 0; height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 20px solid #7c2d12;
         }
 
-        .badge {
-            position: absolute;
-            top: -14px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(90deg, #00ffa3, #00d2ff);
-            color: #000;
-            font-size: 0.8rem;
+        .card-body { padding: 20px; }
+
+        .plan-name { font-size: 1.1rem; font-weight: 800; color: #475569; text-transform: uppercase; }
+        
+        .discount-badge {
+            display: inline-block;
+            background: #7c3aed;
+            color: #fff;
+            font-size: 0.75rem;
             font-weight: 800;
-            padding: 5px 15px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            box-shadow: 0 0 10px rgba(0, 255, 163, 0.5);
+            padding: 3px 8px;
+            border-radius: 6px;
+            float: right;
         }
 
-        .plan-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; color: #fff; }
-        .plan-price { font-size: 2.5rem; font-weight: 800; color: #00ffa3; margin-bottom: 20px; text-shadow: 0 0 10px rgba(0, 255, 163, 0.3); }
-        .plan-price span { font-size: 1rem; color: #94a3b8; }
+        .old-price { text-decoration: line-through; color: #94a3b8; font-size: 0.85rem; margin-top: 10px; }
+        .plan-price { font-size: 1.8rem; font-weight: 900; color: #1e1b4b; }
+        .plan-price span { font-size: 0.85rem; color: #64748b; font-weight: 600; }
 
-        .plan-specs { list-style: none; margin-bottom: 30px; text-align: left; }
-        .plan-specs li { padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: #e2e8f0; font-size: 0.95rem; }
-        .plan-specs li span { color: #00ffa3; font-weight: 700; margin-right: 8px; }
+        .specs-list { list-style: none; margin: 20px 0; }
+        .specs-list li { font-size: 0.88rem; color: #475569; padding: 6px 0; display: flex; align-items: center; gap: 8px; }
+        .specs-list li::before { content: "✓"; color: #7c3aed; font-weight: 900; }
 
-        .btn-buy {
+        .btn-buy-plan {
             display: block;
-            background: linear-gradient(90deg, #00ffa3, #00d2ff);
-            color: #000;
-            text-decoration: none;
-            padding: 14px;
+            width: 100%;
+            background: #f3e8ff;
+            color: #6d28d9;
+            text-align: center;
+            padding: 12px;
             border-radius: 10px;
             font-weight: 800;
-            font-size: 1rem;
+            text-decoration: none;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 255, 163, 0.3);
         }
 
-        .btn-buy:hover { 
-            transform: scale(1.03); 
-            box-shadow: 0 6px 25px rgba(0, 255, 163, 0.6); 
-            color: #000;
+        .btn-buy-plan:hover { background: #6d28d9; color: #fff; }
+        
+        .plan-card.popular .btn-buy-plan {
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .top-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #f59e0b;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            z-index: 2;
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">AETHER<span>HOST</span> ⚡</div>
+        <div class="logo">AETHER<span>HOST</span> ⛏️</div>
         <div class="nav-links">
-            <a href="#">Planos</a>
-            <a href="#">Painel</a>
-            <a href="#">Discord</a>
+            <a href="#">Hospedagem Minecraft</a>
+            <a href="#">Área do Cliente</a>
+            <a href="#" class="btn-create-nav">Criar Servidor ⚡</a>
         </div>
     </nav>
 
     <section class="hero">
-        <h1>Hospedagem de Minecraft <span>Zero Lag</span> 🚀</h1>
-        <p class="subtitle">Servidores de alta performance com proteção DDoS, processadores Ryzen super rápidos e ativação instantânea via PIX! 🇧🇷💚</p>
+        <h1>A forma mais fácil de criar o seu<br>servidor de Minecraft 🎮</h1>
+        <p class="subtitle">Sem complicações, escolha o plano perfeito para você e seus amigos.</p>
+
+        <h2 class="section-title">Escolha seu servidor</h2>
+
+        <div class="location-badge">
+            🇧🇷 Todos os nossos servidores estão localizados em São Paulo (Brasil)
+        </div>
     </section>
 
     <section class="plans-container">
         
-        <!-- Plano Start -->
+        <!-- Plano 1 -->
         <div class="plan-card">
-            <div class="plan-title">Plano Start</div>
-            <div class="plan-price">R$ 15<span>/mês</span></div>
-            <ul class="plan-specs">
-                <li><span>✓</span> 2 GB Memória RAM</li>
-                <li><span>✓</span> Processador Ryzen 9</li>
-                <li><span>✓</span> 20 GB SSD NVMe</li>
-                <li><span>✓</span> Proteção DDoS Gamer 🛡️</li>
-                <li><span>✓</span> Painel Pterodactyl</li>
-            </ul>
-            <a href="#" class="btn-buy">Contratar Agora ⚡</a>
+            <div class="card-header-img">
+                <div class="minecraft-house"></div>
+            </div>
+            <div class="card-body">
+                <span class="discount-badge">25% OFF</span>
+                <div class="plan-name">Plano Start</div>
+                <div class="old-price">R$ 34,99</div>
+                <div class="plan-price">R$ 26,24 <span>/mês</span></div>
+                
+                <ul class="specs-list">
+                    <li>Recomendado para até 8 jogadores</li>
+                    <li>Processamento padrão</li>
+                    <li>Até 3GB RAM</li>
+                    <li>Proteção DDoS Gamer</li>
+                </ul>
+
+                <a href="#" class="btn-buy-plan">Criar servidor</a>
+            </div>
         </div>
 
-        <!-- Plano Pro (Popular) -->
+        <!-- Plano 2 -->
+        <div class="plan-card">
+            <div class="card-header-img">
+                <div class="minecraft-house"></div>
+            </div>
+            <div class="card-body">
+                <span class="discount-badge">25% OFF</span>
+                <div class="plan-name">Plano Pro</div>
+                <div class="old-price">R$ 53,99</div>
+                <div class="plan-price">R$ 40,44 <span>/mês</span></div>
+                
+                <ul class="specs-list">
+                    <li>Recomendado para até 16 jogadores</li>
+                    <li>Processamento padrão</li>
+                    <li>RAM Ilimitada ⚡</li>
+                    <li>Proteção DDoS Gamer</li>
+                </ul>
+
+                <a href="#" class="btn-buy-plan">Criar servidor</a>
+            </div>
+        </div>
+
+        <!-- Plano 3 (Mais Vendido) -->
         <div class="plan-card popular">
-            <div class="badge">Mais Vendido 🔥</div>
-            <div class="plan-title">Plano Pro</div>
-            <div class="plan-price">R$ 30<span>/mês</span></div>
-            <ul class="plan-specs">
-                <li><span>✓</span> 4 GB Memória RAM</li>
-                <li><span>✓</span> Processador Ryzen 9</li>
-                <li><span>✓</span> 40 GB SSD NVMe</li>
-                <li><span>✓</span> Proteção DDoS Gamer 🛡️</li>
-                <li><span>✓</span> Suporte Prioritário 💬</li>
-            </ul>
-            <a href="#" class="btn-buy">Contratar Agora ⚡</a>
+            <span class="top-tag">Mais vendido 🔥</span>
+            <div class="card-header-img">
+                <div class="minecraft-house"></div>
+            </div>
+            <div class="card-body">
+                <span class="discount-badge">25% OFF</span>
+                <div class="plan-name">Plano VIP</div>
+                <div class="old-price">R$ 76,19</div>
+                <div class="plan-price">R$ 57,14 <span>/mês</span></div>
+                
+                <ul class="specs-list">
+                    <li>Recomendado para 32 jogadores</li>
+                    <li>Processamento avançado</li>
+                    <li>RAM Ilimitada ⚡</li>
+                    <li>Painel Pterodactyl Completo</li>
+                </ul>
+
+                <a href="#" class="btn-buy-plan">Criar servidor</a>
+            </div>
         </div>
 
-        <!-- Plano Ultra -->
+        <!-- Plano 4 -->
         <div class="plan-card">
-            <div class="plan-title">Plano Ultra</div>
-            <div class="plan-price">R$ 60<span>/mês</span></div>
-            <ul class="plan-specs">
-                <li><span>✓</span> 8 GB Memória RAM</li>
-                <li><span>✓</span> Processador Ryzen 9</li>
-                <li><span>✓</span> 80 GB SSD NVMe</li>
-                <li><span>✓</span> Proteção DDoS Gamer 🛡️</li>
-                <li><span>✓</span> Slots Ilimitados 🎮</li>
-            </ul>
-            <a href="#" class="btn-buy">Contratar Agora ⚡</a>
+            <span class="top-tag" style="background: #7c3aed;">Ryzen 9 7900X 🚀</span>
+            <div class="card-header-img">
+                <div class="minecraft-house"></div>
+            </div>
+            <div class="card-body">
+                <span class="discount-badge">25% OFF</span>
+                <div class="plan-name">Plano Ultra</div>
+                <div class="old-price">R$ 119,90</div>
+                <div class="plan-price">R$ 89,91 <span>/mês</span></div>
+                
+                <ul class="specs-list">
+                    <li>Recomendado para +100 jogadores</li>
+                    <li>Processamento ultra rápido</li>
+                    <li>RAM Ilimitada ⚡</li>
+                    <li>Suporte Prioritário 24/7</li>
+                </ul>
+
+                <a href="#" class="btn-buy-plan">Criar servidor</a>
+            </div>
         </div>
 
     </section>
