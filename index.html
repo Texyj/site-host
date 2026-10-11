@@ -3,52 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aether Host | Carrinho de Compras</title>
+    <title>Aether Host | A forma mais fácil de criar o seu servidor de Minecraft ⛏️</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Inter, sans-serif; }
-        body { background-color: #f1f5f9; color: #1e293b; text-align: left; }
+        body { background-color: #f8fafc; color: #1e293b; text-align: center; min-height: 100vh; }
 
         /* Navbar Principal */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 8%; background: #ffffff; border-bottom: 1px solid #e2e8f0; }
-        .logo { font-size: 1.4rem; font-weight: 800; color: #4c1d95; text-transform: uppercase; cursor: pointer; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: #ffffff; border-bottom: 1px solid #e2e8f0; sticky: top; z-index: 10; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: #4c1d95; text-transform: uppercase; cursor: pointer; }
         .logo span { color: #f59e0b; }
         .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { color: #475569; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .nav-links a { color: #475569; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+        .btn-create-nav { background: linear-gradient(90deg, #f59e0b, #d97706); color: #fff; padding: 8px 18px; border-radius: 8px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; }
 
         /* Topbar SubHeader */
-        .cart-header { background: #e2e8f0; padding: 10px 8%; color: #64748b; font-size: 0.9rem; font-weight: 600; }
+        .cart-header { background: #e2e8f0; padding: 10px 8%; color: #64748b; font-size: 0.9rem; font-weight: 600; text-align: left; }
 
-        /* Layout Inicial (Vitrine de Planos) */
-        .page-container { padding: 40px 8%; }
-        .hero-title { text-align: center; font-size: 2.2rem; font-weight: 900; color: #2e1065; margin-bottom: 10px; }
-        .hero-sub { text-align: center; color: #64748b; margin-bottom: 30px; }
+        /* TELA 1: VITRINE DE PLANOS */
+        #home-screen { padding: 50px 20px; }
+        h1 { font-size: 2.8rem; font-weight: 900; color: #2e1065; margin-bottom: 10px; }
+        p.subtitle { color: #64748b; font-size: 1.1rem; margin-bottom: 30px; }
 
-        .plans-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .plan-card { background: #fff; border: 1px solid #cbd5e1; border-radius: 12px; width: 260px; padding: 25px 20px; text-align: center; }
-        .plan-name { font-size: 1.2rem; font-weight: 800; color: #1e1b4b; }
-        .plan-price { font-size: 1.8rem; font-weight: 900; color: #4c1d95; margin: 15px 0; }
-        .btn-select { background: #3b82f6; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; width: 100%; }
-        .btn-select:hover { background: #2563eb; }
+        .location-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #ede9fe; color: #5b21b6; padding: 10px 20px;
+            border-radius: 12px; font-weight: 700; font-size: 0.95rem; margin-bottom: 40px;
+        }
 
-        /* Tela do Carrinho / Configurar (Estilo WHMCS) */
-        #cart-screen { display: none; padding: 30px 8%; }
-        .cart-layout { display: grid; grid-template-columns: 260px 1fr 300px; gap: 25px; }
+        .plans-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 5% 40px; }
+        
+        .plan-card {
+            background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px;
+            width: 260px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: 0.3s; position: relative; text-align: left;
+        }
+        .plan-card:hover { transform: translateY(-6px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); }
+        .plan-card.popular { border: 2px solid #6d28d9; background: #faf5ff; }
 
-        /* Sidebar Esquerda */
+        .card-header-img {
+            height: 100px;
+            background: linear-gradient(180deg, #38bdf8 0%, #3b82f6 60%, #16a34a 60%, #15803d 100%);
+        }
+
+        .card-body { padding: 20px; }
+        .plan-name { font-size: 1.1rem; font-weight: 800; color: #475569; text-transform: uppercase; }
+        .discount-badge { display: inline-block; background: #7c3aed; color: #fff; font-size: 0.75rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; float: right; }
+        .old-price { text-decoration: line-through; color: #94a3b8; font-size: 0.85rem; margin-top: 10px; }
+        .plan-price { font-size: 1.8rem; font-weight: 900; color: #1e1b4b; }
+        .plan-price span { font-size: 0.85rem; color: #64748b; font-weight: 600; }
+
+        .specs-list { list-style: none; margin: 20px 0; }
+        .specs-list li { font-size: 0.88rem; color: #475569; padding: 6px 0; display: flex; align-items: center; gap: 8px; }
+        .specs-list li::before { content: "✓"; color: #7c3aed; font-weight: 900; }
+
+        .btn-buy-plan {
+            display: block; width: 100%; background: #f3e8ff; color: #6d28d9;
+            text-align: center; padding: 12px; border-radius: 10px; font-weight: 800;
+            border: none; cursor: pointer; transition: 0.3s;
+        }
+        .btn-buy-plan:hover { background: #6d28d9; color: #fff; }
+        .plan-card.popular .btn-buy-plan { background: linear-gradient(90deg, #f59e0b, #d97706); color: #fff; }
+
+        /* TELA 2: CONFIGURAR & CARRINHO (ESTILO WHMCS ENXADAHOST) */
+        #cart-screen { display: none; padding: 30px 8%; text-align: left; }
+        .cart-layout { display: grid; grid-template-columns: 240px 1fr 300px; gap: 25px; }
+
+        @media (max-width: 900px) {
+            .cart-layout { grid-template-columns: 1fr; }
+        }
+
         .sidebar-box { background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; margin-bottom: 20px; overflow: hidden; }
         .sidebar-title { background: #f8fafc; padding: 12px 15px; font-weight: 800; font-size: 0.9rem; border-bottom: 1px solid #cbd5e1; color: #334155; }
         .sidebar-menu { list-style: none; }
         .sidebar-menu li { padding: 10px 15px; border-bottom: 1px solid #f1f5f9; font-size: 0.85rem; color: #475569; cursor: pointer; }
         .sidebar-menu li:hover { background: #f8fafc; color: #2563eb; }
 
-        /* Área Central (Configurar) */
         .config-area h2 { font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 5px; }
         .config-area p { color: #64748b; font-size: 0.9rem; margin-bottom: 20px; }
         .plan-box-selected { background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #cbd5e1; font-weight: 800; font-size: 1.1rem; margin-bottom: 20px; }
-        
-        .cycle-select { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #cbd5e1; margin-top: 10px; font-size: 0.95rem; }
+        .cycle-select { width: 100%; padding: 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 0.95rem; margin-top: 10px; }
 
-        /* Resumo do Pedido (Direita) */
         .summary-box { background: #475569; color: #fff; border-radius: 8px; overflow: hidden; text-align: center; }
         .summary-header { background: #334155; padding: 12px; font-weight: 700; font-size: 1.1rem; }
         .summary-body { background: #fff; color: #1e293b; padding: 20px; text-align: left; }
@@ -59,95 +93,148 @@
         .btn-continue { display: block; width: 100%; background: #2563eb; color: #fff; border: none; padding: 14px; border-radius: 8px; font-weight: 800; font-size: 1rem; cursor: pointer; margin-top: 15px; }
         .btn-continue:hover { background: #1d4ed8; }
 
-        /* Modal PIX */
-        .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:999; }
-        .modal-content { background:#fff; padding:30px; border-radius:12px; max-width:400px; width:90%; position:relative; }
-        .close-btn { position:absolute; top:10px; right:15px; cursor:pointer; font-weight:800; }
+        /* MODAL PAGAMENTO PIX */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(5px); justify-content: center; align-items: center; z-index: 1000; }
+        .modal-content { background: #fff; padding: 30px; border-radius: 16px; max-width: 420px; width: 90%; text-align: center; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #64748b; font-weight: 800; }
+        
+        .pix-qr { width: 180px; height: 180px; margin: 15px auto; border: 2px dashed #10b981; padding: 10px; border-radius: 12px; }
+        .pix-key-box { background: #f1f5f9; padding: 10px; border-radius: 8px; font-family: monospace; font-size: 0.85rem; word-break: break-all; margin-bottom: 15px; color: #334155; }
+        
+        .btn-copy { background: #10b981; color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 800; cursor: pointer; width: 100%; }
+        .btn-copy:hover { background: #059669; }
     </style>
 </head>
 <body>
 
+    <!-- NAVBAR -->
     <nav>
         <div class="logo" onclick="irParaInicio()">AETHER<span>HOST</span> ⛏️</div>
         <div class="nav-links">
-            <a href="#" onclick="irParaInicio()">Área do Cliente</a>
-            <a href="#">Loja</a>
-            <a href="#">Central de Ajuda</a>
+            <a href="#" onclick="irParaInicio()">Hospedagem Minecraft</a>
+            <button class="btn-create-nav" onclick="selecionarPlano('Plano Start', 26.24)">Criar Servidor ⚡</button>
         </div>
     </nav>
 
-    <div class="cart-header">Carrinho de Compras</div>
+    <!-- TELA 1: HOME / PLANOS -->
+    <div id="home-screen">
+        <h1>A forma mais fácil de criar o seu<br>servidor de Minecraft 🎮</h1>
+        <p class="subtitle">Sem complicações, escolha o plano perfeito para você e seus amigos.</p>
 
-    <!-- TELA 1: VITRINE DE PLANOS -->
-    <div id="home-screen" class="page-container">
-        <h1 class="hero-title">A forma mais fácil de criar seu servidor 🎮</h1>
-        <p class="hero-sub">Escolha o plano ideal e configure na próxima etapa.</p>
+        <div class="location-badge">
+            🇧🇷 Todos os nossos servidores estão localizados em São Paulo (Brasil)
+        </div>
 
-        <div class="plans-grid">
+        <div class="plans-container">
+            <!-- Plano Start -->
             <div class="plan-card">
-                <div class="plan-name">Plano Start</div>
-                <div class="plan-price">R$ 26,24 /mês</div>
-                <button class="btn-select" onclick="selecionarPlano('Plano Start', 26.24)">Criar Servidor ⚡</button>
+                <div class="card-header-img"></div>
+                <div class="card-body">
+                    <span class="discount-badge">25% OFF</span>
+                    <div class="plan-name">Plano Start</div>
+                    <div class="old-price">R$ 34,99</div>
+                    <div class="plan-price">R$ 26,24 <span>/mês</span></div>
+                    
+                    <ul class="specs-list">
+                        <li>Até 8 jogadores</li>
+                        <li>Processamento padrão</li>
+                        <li>3GB RAM</li>
+                        <li>Proteção DDoS Gamer</li>
+                    </ul>
+
+                    <button class="btn-buy-plan" onclick="selecionarPlano('Plano Start', 26.24)">Criar servidor</button>
+                </div>
             </div>
-            <div class="plan-card">
-                <div class="plan-name">Plano Pro</div>
-                <div class="plan-price">R$ 40,44 /mês</div>
-                <button class="btn-select" onclick="selecionarPlano('Plano Pro', 40.44)">Criar Servidor ⚡</button>
+
+            <!-- Plano Pro -->
+            <div class="plan-card popular">
+                <div class="card-header-img"></div>
+                <div class="card-body">
+                    <span class="discount-badge">25% OFF</span>
+                    <div class="plan-name">Plano Pro</div>
+                    <div class="old-price">R$ 53,99</div>
+                    <div class="plan-price">R$ 40,44 <span>/mês</span></div>
+                    
+                    <ul class="specs-list">
+                        <li>Até 16 jogadores</li>
+                        <li>RAM Ilimitada ⚡</li>
+                        <li>Proteção DDoS Gamer</li>
+                        <li>Painel Pterodactyl</li>
+                    </ul>
+
+                    <button class="btn-buy-plan" onclick="selecionarPlano('Plano Pro', 40.44)">Criar servidor</button>
+                </div>
             </div>
+
+            <!-- Plano Ultra -->
             <div class="plan-card">
-                <div class="plan-name">Plano SMP</div>
-                <div class="plan-price">R$ 57,14 /mês</div>
-                <button class="btn-select" onclick="selecionarPlano('Plano SMP', 57.14)">Criar Servidor ⚡</button>
+                <div class="card-header-img"></div>
+                <div class="card-body">
+                    <span class="discount-badge">25% OFF</span>
+                    <div class="plan-name">Plano Ultra</div>
+                    <div class="old-price">R$ 119,90</div>
+                    <div class="plan-price">R$ 89,91 <span>/mês</span></div>
+                    
+                    <ul class="specs-list">
+                        <li>+100 jogadores</li>
+                        <li>Processamento ultra rápido</li>
+                        <li>RAM Ilimitada ⚡</li>
+                        <li>Suporte Prioritário 24/7</li>
+                    </ul>
+
+                    <button class="btn-buy-plan" onclick="selecionarPlano('Plano Ultra', 89.91)">Criar servidor</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- TELA 2: CONFIGURAR E CARRINHO (ESTILO ENXADAHOST) -->
+    <!-- TELA 2: CONFIGURAR / CARRINHO DE COMPRAS -->
     <div id="cart-screen">
+        <div class="cart-header" style="margin-bottom:20px;">Carrinho de Compras » Configurar Servidor</div>
+        
         <div class="cart-layout">
-            
-            <!-- Esquerda: Categorias -->
+            <!-- Coluna Esquerda: Categorias -->
             <div>
                 <div class="sidebar-box">
                     <div class="sidebar-title">🛒 Categorias</div>
                     <ul class="sidebar-menu">
-                        <li>Minecraft » Brasil</li>
+                        <li onclick="irParaInicio()">Minecraft » Brasil</li>
                         <li>VPS Gamer » Brasil</li>
                         <li>Servidores Dedicados</li>
                     </ul>
                 </div>
                 <div class="sidebar-box">
-                    <div class="sidebar-title"> Escolha a Moeda</div>
+                    <div class="sidebar-title">Moeda</div>
                     <div style="padding:10px;">
-                        <select style="width:100%; padding:8px; border-radius:4px;"><option>BRL</option></select>
+                        <select style="width:100%; padding:8px; border-radius:4px;"><option>BRL (R$)</option></select>
                     </div>
                 </div>
             </div>
 
-            <!-- Centro: Opções de Configuração -->
+            <!-- Coluna Central: Configuração -->
             <div class="config-area">
                 <h2>Configurar</h2>
-                <p>Configure as opções desejadas e continue a verificação geral.</p>
+                <p>Configure as opções desejadas e continue para a verificação do pedido.</p>
 
                 <div class="plan-box-selected" id="display-nome-plano">
-                    Plano SMP
+                    Plano Start
                 </div>
 
                 <label style="font-size:0.85rem; font-weight:700; color:#475569;">Escolha o ciclo de pagamento</label>
                 <select class="cycle-select">
                     <option id="opt-mensal">R$ 26.24 Mensal</option>
-                    <option>R$ 78.72 Trimestral</option>
+                    <option id="opt-trimestral">R$ 78.72 Trimestral</option>
                 </select>
             </div>
 
-            <!-- Direita: Resumo do Pedido -->
+            <!-- Coluna Direita: Resumo do Pedido -->
             <div>
                 <div class="summary-box">
                     <div class="summary-header">Resumo do Pedido</div>
                     <div class="summary-body">
-                        <div class="summary-item"><b id="sum-nome-plano">Plano SMP</b></div>
+                        <div class="summary-item"><b id="sum-nome-plano">Plano Start</b></div>
                         <div class="summary-item"><span style="color:#64748b;">Minecraft » Brasil</span></div>
-                        <div class="summary-item"><span>Valor:</span> <b id="sum-preco">R$ 26.24</b></div>
+                        <div class="summary-item"><span>Valor do Plano:</span> <b id="sum-preco">R$ 26.24</b></div>
                         <div class="summary-item"><span>Custos Adicionais:</span> <span>R$ 0.00</span></div>
 
                         <div class="summary-total">
@@ -159,27 +246,35 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- Modal Pagamento PIX -->
+    <!-- MODAL DE CHECKOUT / PIX -->
     <div class="modal" id="pixModal">
         <div class="modal-content">
-            <span class="close-btn" onclick="fecharPixModal()">&times;</span>
-            <h3 style="margin-bottom:15px; color:#2e1065;">Pagamento via PIX ⚡</h3>
-            <p style="font-size:0.9rem; color:#64748b; margin-bottom:20px;">Escaneie o QrCode ou copie a chave PIX abaixo para ativar seu servidor automaticamente.</p>
-            
-            <div style="background:#f1f5f9; padding:20px; border-radius:8px; text-align:center; font-weight:800; color:#1e293b; margin-bottom:15px;">
-                CHAVE PIX: aetherhost-pix@exemplo.com
+            <span class="close-modal" onclick="fecharPixModal()">&times;</span>
+            <h3 style="color:#2e1065; font-size:1.3rem;">Pagar com PIX ⚡</h3>
+            <p style="font-size:0.85rem; color:#64748b; margin-top:5px;">Escaneie o QR Code ou copie a chave PIX abaixo:</p>
+
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=aetherhost-pix-pagamento" class="pix-qr" alt="QR Code PIX">
+
+            <div class="pix-key-box" id="pixKey">
+                00020126580014BR.GOV.BCB.PIX0136aetherhost-pix-chave-aleatoria5030002BR5910AetherHost6009SaoPaulo62070503***6304E2CA
             </div>
 
-            <button class="btn-select" onclick="alert('Pagamento em processamento! Seu servidor será gerado.')">Confirmar Pagamento 🚀</button>
+            <button class="btn-copy" onclick="copiarPix()">Copiar Chave PIX 📋</button>
         </div>
     </div>
 
+    <!-- JAVASCRIPT DE NAVEGAÇÃO E AÇÕES -->
     <script>
+        let planoAtual = '';
+        let precoAtual = 0;
+
         function selecionarPlano(nome, preco) {
+            planoAtual = nome;
+            precoAtual = preco;
+
             document.getElementById('home-screen').style.display = 'none';
             document.getElementById('cart-screen').style.display = 'block';
 
@@ -188,11 +283,14 @@
             document.getElementById('sum-preco').innerText = "R$ " + preco.toFixed(2);
             document.getElementById('sum-total').innerText = "R$ " + preco.toFixed(2);
             document.getElementById('opt-mensal').innerText = "R$ " + preco.toFixed(2) + " Mensal";
+            document.getElementById('opt-trimestral').innerText = "R$ " + (preco * 3).toFixed(2) + " Trimestral";
+            window.scrollTo(0, 0);
         }
 
         function irParaInicio() {
             document.getElementById('cart-screen').style.display = 'none';
             document.getElementById('home-screen').style.display = 'block';
+            window.scrollTo(0, 0);
         }
 
         function abrirPixModal() {
@@ -201,6 +299,12 @@
 
         function fecharPixModal() {
             document.getElementById('pixModal').style.display = 'none';
+        }
+
+        function copiarPix() {
+            const keyText = document.getElementById('pixKey').innerText;
+            navigator.clipboard.writeText(keyText);
+            alert("🚀 Chave PIX copiada com sucesso! Faça o pagamento no app do seu banco.");
         }
     </script>
 
